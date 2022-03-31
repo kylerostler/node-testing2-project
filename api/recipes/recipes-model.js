@@ -6,4 +6,9 @@ async function getRecipeById(recipe_id) {
     return recipeRows
 }
 
-module.exports = { getRecipeById }
+async function insert(recipe) {
+    const [id] = await db('recipes').insert(recipe);
+    return getRecipeById(id);
+  }
+
+module.exports = { getRecipeById, insert }
